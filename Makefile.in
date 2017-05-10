@@ -16,7 +16,7 @@ install: dnstracer
 	@INSTALL_DIR@ $(BINDIR)
 	@INSTALL_PROGRAM@ dnstracer $(BINDIR)
 	test '@MANPAGE@' && @INSTALL_DIR@ $(MANDIR)/man1 || true
-	test '@MANPAGE@' && @PODMAN@ $(POD) > $(MANDIR)man1/@MANPAGE@ || true
+	test '@MANPAGE@' && @PODMAN@ $(POD) > $(MANDIR)/man1/@MANPAGE@ || true
 
 spotless: clean
 	rm -f @GENERATED_FILES@ @CONFIGURE_FILES@
