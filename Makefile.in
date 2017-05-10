@@ -2,7 +2,6 @@ LIBS=@LIBS@
 CC=@CC@
 BINDIR=$(TARGET)@bindir@
 MANDIR=$(TARGET)@mandir@
-POD=dnstracer.pod
 
 OBJS=dnstracer.o @GETOPT@
 
@@ -15,8 +14,8 @@ clean:
 install: dnstracer
 	@INSTALL_DIR@ $(BINDIR)
 	@INSTALL_PROGRAM@ dnstracer $(BINDIR)
-	test '@MANPAGE@' && @INSTALL_DIR@ $(MANDIR)/man1 || true
-	test '@MANPAGE@' && @PODMAN@ $(POD) > $(MANDIR)/man1/@MANPAGE@ || true
+	@INSTALL_DIR@ $(MANDIR)/man8
+	@INSTALL_DATA@ dnstracer.8 $(MANDIR)/man8
 
 spotless: clean
 	rm -f @GENERATED_FILES@ @CONFIGURE_FILES@
