@@ -1,6 +1,5 @@
 #! /bin/sh
 
-#  WORDS_BIGENDIAN ?
 
 
 ac_help='--disable-ipv6	No IPv6 queries'
@@ -38,5 +37,32 @@ if AC_CHECK_FUNC getopt; then
 else
     AC_SUB 'GETOPT' 'getopt.o'
 fi
+
+#  WORDS_BIGENDIAN ?
+cat > ngc$$.c << EOF
+main()
+{
+    int test_var = 1;
+    char *msb = (unsigned char*)&test_var;
+
+    
+    return msb[0] == 0;
+}
+EOF
+
+if $AC_CC -o ngc$$ ngc$$.c; then
+    ./ngc$$
+    status=$?
+else
+    status=':-('
+fi
+rm -f ngc$$ ngc$$.c
+
+case "$status" in
+0) AC_DEFINE 'WORDS_LITTLEENDIAN' '1' ;;
+1) AC_DEFINE 'WORDS_BIGENDIAN' '1' ;;
+*) AC_FAIL "can't figure out the endianosity of this machine?" ;;
+esac
+
 
 AC_OUTPUT Makefile
