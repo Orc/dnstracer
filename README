@@ -1,0 +1,33 @@
+$Id: README,v 1.8 2003/01/06 22:40:31 mavetju Exp $
+
+WHAT IS DNSTRACER?
+
+Dnstracer determines where a given Domain Name Server (DNS) gets
+its information from, and follows the chain of DNS servers back to
+the servers which know the data.
+
+Its behaviour is similair to ntptrace(8), which does it for the
+NTP protocol.
+
+HOW TO INSTALL?
+
+In theory, run 'configure', 'make' and 'make install' should be
+enough to install the binary and the man-page. I've developed it
+under FreeBSD 4.4 and tested it on Debian, SunOS and Solaris. Due
+to the nature of autoconf and friends, you need GNU Make.
+
+If you don't want to have IPv6 support in it, run configure with
+the --disable-ipv6 option.
+
+Windows users with Microsoft Visual C++ please use MSVB.BAT (supplied
+by Mike Black <mblack@csihq.com>)
+
+LICENSE
+
+BSD license. See the file LICENSE for more information.
+
+CONTACT
+
+My email address is edwin@mavetju.org
+My website is http://www.mavetju.org
+Mailing-lists are available: http://www.mavetju.org/contacts.php

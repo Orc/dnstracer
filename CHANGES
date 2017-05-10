@@ -1,0 +1,88 @@
+$Id: CHANGES,v 1.26 2004/07/08 08:19:58 mavetju Exp $
+
+Version 1.9:
+	- With the rollout of IPv6 for a.root-servers.net, it always
+	  took the IPv6 address even if you used the -4 option.
+	- Fix false lame server issues with domains which have the
+	  higher domain in it (command.com for example).
+
+Version 1.8.1:
+	- Put back timeout command line parameter, it will be the
+	  maximum time to wait instead of an increasing one.
+
+Version 1.8:
+	- Better handling of timeout (instead of a static value,
+	  start with five seconds and double it each retry)
+	- Warnings are printed if you receive a different RR type
+	  than the one you asked for (for example when you ask for
+	  an A record and receive a CNAME)
+	- Fixed problems when records received in the authority
+	  field are shorter than the domain the nameserver is
+	  authoritative for.
+	- When compiled without IPv6 support on an IPv6 capable
+	  machine the machine tried to query the IPv6 translated
+	  IPv5 address anyway.
+	- -C caches hosts which haven't answered too.
+
+Version 1.7.1:
+	- Fix display of SOA serial number, by Janne Snabb
+	  <snabb@epipe.com>
+	- Non-IPv6 builds should not use gethostbyname2()
+
+Version 1.7:
+	- Removed a debug-line while doing PTR requests.
+	- Now IPv6 servers are traced too. Use -4 to disable it.
+	- Added -S option for specifying source IP address.
+
+version 1.6:
+	- Added SOA record tracing
+	- Fixed a debug duplicate variable printing.
+
+version 1.5:
+	- Sometimes it happened while tracing a name without
+	  specifying a server it would return immediatly without
+	  printing any information.
+	- names with a trailing dot are now handled correctly.
+	- warning from Kris Kennaway <kris@obsecurity.org> regarding
+	  sprintf()'s without format-strings (yes, I feel ashamed).
+	- On request of Anthony DeRobertis <asd@suespammers.org>,
+	  via Thomas Seyrat <tomasera@debian.org>, support for PTR
+	  records.
+
+version 1.4:
+	- Added -Wall to Makefile.am so at least I would get warnings
+	  from my C compiler thank you. Removed some stupid unused
+	  variables.
+	- Fixed big/little endian problem in the structs so that the
+	  flags are looking allright now.
+	- Answers are displayed as authoritative or normal.
+	- Digging goes on until we have hit an authorative server.
+	- Info about which zone is being queried now.
+
+version 1.3:
+	- added win32 support by Mike Black <mblack@csihq.com>
+	- fixed bug where the IP addresses in the resource records
+	  wouldn't be used.
+	- when an authority NS record wouldn't have an additional
+	  A record it can get multiple IP addresses when it resolves
+	  the hostname in the gethostbyname(). This is now handled
+	  correctly.
+
+version 1.2:
+	- renamed into dnstracer due to clash with DJBDNS's dnstracer.
+	- dnstracer would segfault if nameserver name couldn't be
+	  resolved (by Vilhelm Bergman <d96v@dtek.chalmers.se>)
+	- support for /etc/resolv.conf via a patch from Moritz
+	  Barsnick <moritz@barsnick.net>
+	- -s . will take A.ROOT-SERVERS.NET
+	- autoconf/automake support... *shudder*
+	- support for different query-classes.
+	- Gerd v. Egidy <egidy@deam.de> gave it RPM capabilities
+	  and checked the automake/autoconf construction.
+
+version 1.1:
+	- fixed problems for big-endian little-endian machines.
+	- fixed linking problem on Solaris. Use Makefile.sun for them.
+
+version 1.0:
+	- initial release

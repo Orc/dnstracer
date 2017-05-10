@@ -1,0 +1,15 @@
+LIBS=@LIBS@
+CC=@CC@
+
+OBJS=dnstracer.o @GETOPT@
+
+dnstracer: $(OBJS)
+	$(CC) -o $@ $< $(LIBS)
+
+clean:
+	rm -f dnstracer $(OBJS)
+
+spotless: clean
+	rm -f @GENERATED_FILES@ @CONFIGURE_FILES@
+
+dnstracer.o: dnstracer.c config.h dnstracer_broken.h

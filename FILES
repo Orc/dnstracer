@@ -1,0 +1,32 @@
+$Id: FILES,v 1.1 2002/01/25 01:40:09 mavetju Exp $
+
+General
+-------
+CHANGES			- Change log
+CONTACT			- How to contact me
+FILES			- This file
+LICENSE			- License under which this software is distributed
+README			- Small manual
+
+Auto-configuration
+------------------
+configure.sh		- My configure-template
+configure.inc		- (Required by configure.sh)
+Makefile.in		- Makefile template
+
+Source-file
+-----------
+dnstracer.8		- Man-page, obtained from dnstracer.pod
+dnstracer.c		- The source-file
+dnstracer.pod		- The original man-file
+dnstracer.spec		- Needed for RPM creation
+dnstracer_broken.h	- Contains values for enumerations in case they
+			  are not defined in arpa/nameser.h
+
+WIN32 compatibility
+-------------------
+MSVC.BAT		- Microsoft Visual C++ mini-makefile
+getopt.c		- Visual C++ doesn't provide these routines
+getopt.h		- Visual C++ doesn't provide these routines
+
+(between brackets: not important, part of autoconfigure)
