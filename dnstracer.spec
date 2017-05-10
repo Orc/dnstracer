@@ -8,7 +8,7 @@ URL:       http://www.mavetju.org/unix/general.php
 Source:    %{name}-%{version}.tar.gz
 Patch0:    dnstracer-1.2-am_req.patch
 Buildroot: /tmp/%{name}-%{version}-root
-BuildPrereq: automake autoconf perl
+BuildPrereq: perl
 
 %description
 dnstracer determines where a given Domain Name Server (DNS) gets
@@ -20,14 +20,11 @@ the servers which know the data.
 %patch0 -p1
 
 %build
-aclocal
-automake
-autoconf
-./configure --prefix=%{_prefix} --mandir=%{_mandir}
+./configure.sh --prefix=%{_prefix} --mandir=%{_mandir}
 make
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
+make install TARGET=$RPM_BUILD_ROOT
 
 %clean
 rm -fr $RPM_BUILD_ROOT
