@@ -33,6 +33,15 @@ test "$NOIPV6" && AC_DEFINE 'NOIPV6' '1'
 AC_PROG_CC
 AC_CHECK_RESOLVER
 
+# the manpage is in pod format, so we've gotta pod2man it
+# to get an installable manpage :-(
+if AC_PROG pod2man; then
+    AC_SUB 'MANPAGE' 'dnstracer.1'
+else
+    AC_SUB 'MANPAGE' ''
+fi
+
+
 if AC_CHECK_FUNC getopt; then
     AC_SUB 'GETOPT' ''
 else
