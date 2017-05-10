@@ -26,9 +26,11 @@ locals() {
 . ./configure.inc
 
 AC_INIT dnstracer
+unset _MK_LIBRARIAN
 
 test "$NOIPV6" && AC_DEFINE 'NOIPV6' '1'
 
+AC_PROG_CC
 AC_CHECK_RESOLVER
 
 if AC_CHECK_FUNC getopt; then
