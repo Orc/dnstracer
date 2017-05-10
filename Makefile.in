@@ -7,7 +7,7 @@ POD=dnstracer.pod
 OBJS=dnstracer.o @GETOPT@
 
 dnstracer: $(OBJS)
-	$(CC) -o $@ $< $(LIBS)
+	$(CC) -o $@ $(OBJS) $(LIBS)
 
 clean:
 	rm -f dnstracer $(OBJS)
