@@ -11,10 +11,9 @@ NTP protocol.
 
 HOW TO INSTALL?
 
-In theory, run 'configure', 'make' and 'make install' should be
+In theory, run 'configure.sh', 'make' and 'make install' should be
 enough to install the binary and the man-page. I've developed it
-under FreeBSD 4.4 and tested it on Debian, SunOS and Solaris. Due
-to the nature of autoconf and friends, you need GNU Make.
+under FreeBSD 4.4 and tested it on Debian, SunOS and Solaris.
 
 If you don't want to have IPv6 support in it, run configure with
 the --disable-ipv6 option.
