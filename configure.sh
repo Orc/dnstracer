@@ -32,7 +32,7 @@ test "$NOIPV6" && AC_DEFINE 'NOIPV6' '1'
 AC_PROG_CC
 AC_CHECK_RESOLVER
 
-if AC_CHECK_FUNC getopt; then
+if AC_CHECK_FUNCS getopt; then
     AC_SUB 'GETOPT' ''
 else
     AC_SUB 'GETOPT' 'getopt.o'
