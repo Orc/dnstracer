@@ -39,6 +39,8 @@ else
 fi
 
 #  WORDS_BIGENDIAN ?
+
+LOGN "Checking byte order "
 cat > ngc$$.c << EOF
 main()
 {
@@ -59,8 +61,8 @@ fi
 rm -f ngc$$ ngc$$.c
 
 case "$status" in
-0) AC_DEFINE 'WORDS_LITTLEENDIAN' '1' ;;
-1) AC_DEFINE 'WORDS_BIGENDIAN' '1' ;;
+0) LOG "(little endian)"; AC_DEFINE 'WORDS_LITTLEENDIAN' '1' ;;
+1) LOG "(big endian)"; AC_DEFINE 'WORDS_BIGENDIAN' '1' ;;
 *) AC_FAIL "can't figure out the endianosity of this machine?" ;;
 esac
 
