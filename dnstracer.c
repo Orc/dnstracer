@@ -1208,14 +1208,14 @@ create_session(char *host, char *server_ip, int ipv6, char *server_name,
     //
     // Send the packet and wait for an answer.
     //
-    errorcode = 0;
-    for (i = 0; i < global_retries; i++) {
+    errorcode = i = 0;
+    do {
 	send_data(server_ip, session);
 	if ((errorcode = receive_data(session, i)) == 0)
 	    break;
 	printf("* ");
 	fflush(stdout);
-    }
+    } while ( i++ < global_retries );
     close(session->socket);
 
     //
@@ -1582,7 +1582,8 @@ main(int argc, char **argv)
 	    break;
 
 	case 'r':
-	    if ((global_retries = atoi(optarg)) < 1) {
+	    global_retries = atoi(optarg);
+	    if ( global_retries < 0 ) {
 		fprintf(stderr,
 		    "Strange amount of retries, setting to default\n");
 		global_retries = DEFAULT_RETRIES;
@@ -1622,8 +1623,11 @@ main(int argc, char **argv)
     strcpy(argv0, argv[0]);
     if (argv0[strlen(argv[0]) - 1] == '.') argv0[strlen(argv[0]) - 1] = 0;
 
-    printf("Tracing to %s[%s] via %s, maximum of %d retries\n",
-	argv0, rr_types[global_querytype], server_name, global_retries);
+    printf("Tracing to %s[%s] via %s",
+	     argv0, rr_types[global_querytype], server_name);
+    if ( global_retries > 0 )
+	printf(", maximum of %d retries", global_retries);
+    putchar('\n');
 
     srandom(time(NULL));
 
